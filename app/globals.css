@@ -1,0 +1,513 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Warm cream backdrop */
+  --cottage: #f2e8d8;
+  --cottage-deep: #e5d4b8;
+  /* Dark muted navy "trim" */
+  --cornstalk: #324860;
+  --cornstalk-deep: #1f2e40;
+  --cornstalk-soft: #8a9aae;
+  /* Burnt orange sticky notes */
+  --sticky: #d8915c;
+  --ink: #1a2638;
+  --muted: #7a8290;
+  --paper: #fffcf5;
+  --notepad-line: #a8bbd0;
+  --notepad-margin: #c97a6b;
+}
+
+html, body {
+  background: var(--cottage);
+  color: var(--ink);
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+}
+body {
+  overflow-x: hidden;
+}
+
+.font-hand {
+  font-family: var(--font-hand), "Bradley Hand", "Comic Sans MS", cursive;
+}
+.font-block {
+  font-family: var(--font-block), "Arial Black", Impact, sans-serif;
+  letter-spacing: 0.01em;
+}
+.font-bubble {
+  font-family: var(--font-bubble), "Cooper Black", "Arial Black", sans-serif;
+}
+
+/* ------- Daisy-filled bubble title ------- */
+.daisy-title {
+  display: inline-block;
+  font-family: var(--font-bubble), "Cooper Black", sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  background-color: #8a9aae;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70' width='70' height='70'><g transform='translate(11 13) rotate(8)'><circle cx='0' cy='-6.5' r='3.9' fill='%23f2e8d8'/><circle cx='6.2' cy='-2' r='3.9' fill='%23f2e8d8'/><circle cx='3.8' cy='5.3' r='3.9' fill='%23f2e8d8'/><circle cx='-3.8' cy='5.3' r='3.9' fill='%23f2e8d8'/><circle cx='-6.2' cy='-2' r='3.9' fill='%23f2e8d8'/><circle cx='0' cy='0' r='2.6' fill='%23c97a4b'/></g><g transform='translate(42 8) rotate(-22)'><circle cx='0' cy='-4.6' r='2.8' fill='%23f2e8d8'/><circle cx='4.4' cy='-1.4' r='2.8' fill='%23f2e8d8'/><circle cx='2.7' cy='3.7' r='2.8' fill='%23f2e8d8'/><circle cx='-2.7' cy='3.7' r='2.8' fill='%23f2e8d8'/><circle cx='-4.4' cy='-1.4' r='2.8' fill='%23f2e8d8'/><circle cx='0' cy='0' r='1.8' fill='%23c97a4b'/></g><g transform='translate(58 28) rotate(40)'><circle cx='0' cy='-5.2' r='3.2' fill='%23f2e8d8'/><circle cx='4.9' cy='-1.6' r='3.2' fill='%23f2e8d8'/><circle cx='3' cy='4.2' r='3.2' fill='%23f2e8d8'/><circle cx='-3' cy='4.2' r='3.2' fill='%23f2e8d8'/><circle cx='-4.9' cy='-1.6' r='3.2' fill='%23f2e8d8'/><circle cx='0' cy='0' r='2.1' fill='%23c97a4b'/></g><g transform='translate(28 36) rotate(-12)'><circle cx='0' cy='-6' r='3.6' fill='%23f2e8d8'/><circle cx='5.7' cy='-1.9' r='3.6' fill='%23f2e8d8'/><circle cx='3.5' cy='4.9' r='3.6' fill='%23f2e8d8'/><circle cx='-3.5' cy='4.9' r='3.6' fill='%23f2e8d8'/><circle cx='-5.7' cy='-1.9' r='3.6' fill='%23f2e8d8'/><circle cx='0' cy='0' r='2.4' fill='%23c97a4b'/></g><g transform='translate(8 52) rotate(28)'><circle cx='0' cy='-4.8' r='2.9' fill='%23f2e8d8'/><circle cx='4.6' cy='-1.5' r='2.9' fill='%23f2e8d8'/><circle cx='2.8' cy='3.9' r='2.9' fill='%23f2e8d8'/><circle cx='-2.8' cy='3.9' r='2.9' fill='%23f2e8d8'/><circle cx='-4.6' cy='-1.5' r='2.9' fill='%23f2e8d8'/><circle cx='0' cy='0' r='1.9' fill='%23c97a4b'/></g><g transform='translate(50 56) rotate(-18)'><circle cx='0' cy='-5.4' r='3.3' fill='%23f2e8d8'/><circle cx='5.1' cy='-1.7' r='3.3' fill='%23f2e8d8'/><circle cx='3.1' cy='4.4' r='3.3' fill='%23f2e8d8'/><circle cx='-3.1' cy='4.4' r='3.3' fill='%23f2e8d8'/><circle cx='-5.1' cy='-1.7' r='3.3' fill='%23f2e8d8'/><circle cx='0' cy='0' r='2.2' fill='%23c97a4b'/></g></svg>");
+  background-size: 44px 44px;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 1px 0 #1f2e40)
+    drop-shadow(0 2px 0 #1f2e40)
+    drop-shadow(0 3px 0 #1f2e40)
+    drop-shadow(1px 5px 4px rgba(58, 48, 39, 0.2));
+}
+
+/* ------- Site frame / nursery trim ------- */
+.frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+/* solid top + bottom strips that cover safe areas, with crown-molding profile
+   along the inner edge (where it meets the wall) */
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--cornstalk);
+  z-index: 2;
+}
+.frame::before {
+  top: 0;
+  height: max(calc(env(safe-area-inset-top, 0px) + 10px), 36px);
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(100% - 10px),
+    var(--cornstalk-deep) calc(100% - 10px),
+    var(--cornstalk-deep) calc(100% - 9px),
+    rgba(255, 255, 255, 0.45) calc(100% - 9px),
+    rgba(255, 255, 255, 0.45) calc(100% - 8px),
+    transparent calc(100% - 8px),
+    transparent calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 2px),
+    transparent calc(100% - 2px),
+    transparent calc(100% - 1px),
+    var(--cornstalk-deep) calc(100% - 1px)
+  );
+}
+.frame::after {
+  bottom: 0;
+  height: max(calc(env(safe-area-inset-bottom, 0px) + 10px), 24px);
+  background-image: linear-gradient(
+    to top,
+    transparent 0,
+    transparent calc(100% - 10px),
+    var(--cornstalk-deep) calc(100% - 10px),
+    var(--cornstalk-deep) calc(100% - 9px),
+    rgba(255, 255, 255, 0.45) calc(100% - 9px),
+    rgba(255, 255, 255, 0.45) calc(100% - 8px),
+    transparent calc(100% - 8px),
+    transparent calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 2px),
+    transparent calc(100% - 2px),
+    transparent calc(100% - 1px),
+    var(--cornstalk-deep) calc(100% - 1px)
+  );
+}
+/* solid left + right strips with bead profile on inner edge */
+.frame > .frame-left,
+.frame > .frame-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background-color: var(--cornstalk);
+  z-index: 1;
+}
+.frame > .frame-left {
+  left: 0;
+  background-image: linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 2px),
+    transparent calc(100% - 2px),
+    transparent calc(100% - 1px),
+    var(--cornstalk-deep) calc(100% - 1px)
+  );
+}
+.frame > .frame-right {
+  right: 0;
+  background-image: linear-gradient(
+    to left,
+    transparent 0,
+    transparent calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 4px),
+    var(--cornstalk-deep) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 3px),
+    rgba(255, 255, 255, 0.5) calc(100% - 2px),
+    transparent calc(100% - 2px),
+    transparent calc(100% - 1px),
+    var(--cornstalk-deep) calc(100% - 1px)
+  );
+}
+@media (min-width: 768px) {
+  .frame::before { height: max(calc(env(safe-area-inset-top, 0px) + 14px), 42px); }
+  .frame::after { bottom: 0; height: max(calc(env(safe-area-inset-bottom, 0px) + 14px), 32px); }
+  .frame > .frame-left,
+  .frame > .frame-right { width: 20px; }
+}
+
+/* In standalone (home-screen PWA), mirror top + bottom strip heights so the
+   frame looks symmetric. The status-bar inset is bigger than the
+   home-indicator inset, so we add it to the bottom strip too. */
+/* In standalone PWA, match Safari mobile's top trim height and mirror it
+   to the bottom (using the larger of top/bottom insets so neither edge
+   leaks past the home indicator or notch). */
+@media (display-mode: standalone) {
+  .frame::before {
+    height: max(calc(env(safe-area-inset-top, 0px) + 10px), 36px);
+  }
+  .frame::after {
+    height: max(
+      calc(env(safe-area-inset-top, 0px) + 10px),
+      calc(env(safe-area-inset-bottom, 0px) + 10px),
+      36px
+    );
+  }
+  @media (min-width: 768px) {
+    .frame::before {
+      height: max(calc(env(safe-area-inset-top, 0px) + 14px), 42px);
+    }
+    .frame::after {
+      height: max(
+        calc(env(safe-area-inset-top, 0px) + 14px),
+        calc(env(safe-area-inset-bottom, 0px) + 14px),
+        42px
+      );
+    }
+  }
+}
+
+/* subtle linen-y texture on the page background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ------- Polaroid flip wrapper ------- */
+.polaroid-tilt {
+  perspective: 1400px;
+}
+.flipper {
+  display: grid;
+  transition: transform 0.65s cubic-bezier(0.4, 0.05, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flipper > .front,
+.flipper > .back {
+  grid-area: 1 / 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flipper > .back {
+  transform: rotateY(180deg);
+}
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+.flipper > .front {
+  cursor: pointer;
+  background: var(--paper);
+  border: 0;
+  font: inherit;
+  color: inherit;
+}
+.flipper > .front:focus-visible {
+  outline: 2px solid var(--cornstalk);
+  outline-offset: 4px;
+}
+
+/* Back of polaroid */
+.polaroid.back {
+  background: var(--paper);
+  padding: 0;
+}
+.polaroid-back-inner {
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--font-hand), cursive;
+  color: var(--ink);
+}
+.polaroid-back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--cottage-deep);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.polaroid-back-close {
+  background: transparent;
+  border: 0;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--cornstalk-deep);
+  padding: 4px 8px;
+}
+.polaroid-comments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 240px;
+}
+.polaroid-comments li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--cottage-deep);
+}
+.polaroid-comments li:last-child {
+  border-bottom: 0;
+}
+.polaroid-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 18px 0 !important;
+}
+.comment-author {
+  color: var(--cornstalk-deep);
+  font-weight: 600;
+}
+.comment-text {
+  color: var(--ink);
+}
+.comment-when {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.polaroid-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.polaroid-input {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.05rem;
+  padding: 6px 10px;
+  border: 1px solid var(--cottage-deep);
+  border-radius: 4px;
+  background: var(--cottage);
+  color: var(--ink);
+  resize: none;
+  outline: none;
+}
+.polaroid-input:focus {
+  border-color: var(--cornstalk);
+}
+.polaroid-error {
+  font-size: 0.9rem;
+  color: #a83232;
+}
+.polaroid-submit {
+  align-self: flex-end;
+  padding: 6px 16px;
+  background: var(--cornstalk);
+  color: var(--ink);
+  border: 0;
+  border-radius: 4px;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.polaroid-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ------- Polaroid ------- */
+.polaroid {
+  background: var(--paper);
+  padding: 10px 10px 0;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.06),
+    0 8px 24px -8px rgba(58, 48, 39, 0.25);
+  border-radius: 2px;
+}
+@media (min-width: 640px) {
+  .polaroid { padding: 14px 14px 0; }
+}
+.polaroid-photo {
+  background: #000;
+  overflow: hidden;
+}
+.polaroid-photo img,
+.polaroid-photo video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.polaroid-caption {
+  padding: 12px 6px 16px;
+  text-align: center;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.polaroid-meta {
+  text-align: center;
+  font-family: var(--font-hand), cursive;
+  font-size: 0.95rem;
+  color: var(--muted);
+  padding-bottom: 14px;
+}
+
+/* ------- Sticky note ------- */
+.sticky {
+  background: var(--sticky);
+  padding: 28px 22px 22px;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  color: var(--ink);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.05),
+    6px 8px 16px -8px rgba(58, 48, 39, 0.4);
+  position: relative;
+}
+.sticky::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* ------- Notepad (lined paper) ------- */
+.notepad {
+  background: var(--paper);
+  background-image:
+    linear-gradient(to right, transparent 38px, var(--notepad-margin) 38px, var(--notepad-margin) 39px, transparent 39px),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      var(--notepad-line) 31px,
+      var(--notepad-line) 32px
+    );
+  padding: 24px 18px 22px 52px;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.35rem;
+  line-height: 32px;
+  color: var(--ink);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.05),
+    0 6px 16px -8px rgba(58, 48, 39, 0.3);
+}
+
+/* ------- Cream note card ------- */
+.notecard {
+  background: var(--cottage-deep);
+  padding: 22px 22px 20px;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  color: var(--ink);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.05),
+    0 6px 16px -8px rgba(58, 48, 39, 0.25);
+}
+
+.note-meta {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-hand), cursive;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ------- Pull-to-refresh spinner ------- */
+@keyframes ptr-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.ptr-spin {
+  animation: ptr-spin 0.9s linear infinite;
+}
+
+/* ------- Enable notifications card ------- */
+.notify-card {
+  margin: 32px auto 0;
+  max-width: 24rem;
+  padding: 14px 18px;
+  background: var(--paper);
+  border: 1px solid var(--cornstalk-soft);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px -8px rgba(58, 48, 39, 0.2);
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.notify-button {
+  background: var(--cornstalk);
+  color: var(--ink);
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.notify-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.notify-link {
+  background: transparent;
+  border: 0;
+  color: var(--cornstalk-deep);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+/* ------- Day heading ------- */
+.day-heading {
+  font-family: var(--font-hand), cursive;
+  font-size: 1.6rem;
+  color: var(--cornstalk-deep);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
